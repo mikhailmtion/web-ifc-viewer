@@ -15,7 +15,8 @@
     "init-repo": "yarn && npm run build",
     "start": "cd example && yarn start",
     "build": "cd viewer && yarn build && cd ../example && yarn build",
-    "publish-repo": "cd viewer && yarn build && npm publish"
+    "publish-repo": "cd viewer && yarn build && npm publish",
+    "prepare": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/agviegas/web-ifc-viewer/issues"
