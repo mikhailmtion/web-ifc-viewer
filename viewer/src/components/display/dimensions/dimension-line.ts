@@ -215,7 +215,11 @@ export class IfcDimensionLine {
   }
 
   private roundScale(scale: number) {
-    return scale.toFixed(2)
+    if (IfcDimensionLine.units === 'm')
+      return scale.toFixed(2)
+    if (IfcDimensionLine.units === 'mm')
+      return scale.toFixed(0)
+    return scale
   }
 
   private getTextContent() {
