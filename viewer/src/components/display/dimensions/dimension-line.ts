@@ -214,8 +214,12 @@ export class IfcDimensionLine {
     return label;
   }
 
+  private roundScale(scale: number) {
+    return scale.toFixed(2)
+  }
+
   private getTextContent() {
-    return `${this.length * IfcDimensionLine.scale} ${IfcDimensionLine.units}`;
+    return `${this.roundScale(this.length * IfcDimensionLine.scale)} ${IfcDimensionLine.units}`;
   }
 
   private newBoundingBox() {
