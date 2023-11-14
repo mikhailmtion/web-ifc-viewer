@@ -31,6 +31,7 @@ viewer.axes.setAxes();
 viewer.grid.setGrid();
 // viewer.shadowDropper.darkness = 1.5;
 
+
 // Set up stats
 const stats = new Stats();
 stats.showPanel(2);
