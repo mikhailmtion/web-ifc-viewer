@@ -129,8 +129,5 @@ sectionButton.addEventListener('click', () => {
 
 const dimBtn = createSideMenuButton('./resources/dropbox-icon.svg');
 dimBtn.addEventListener('click', () => {
-  dimBtn.blur();
-  viewer.dimensions.setDimensionIn2D = true;
-  viewer.dimensions.active = true;
-  viewer.dimensions.previewActive = true;
+  viewer.IFC.selector.prepickIfcItemsByID(0, [166316, 175964], true, true);
 });

@@ -89,11 +89,11 @@ export class IfcContext {
     return this.scene.scene;
   }
 
-  getRenderer():any {
+  getRenderer(): any {
     return this.renderer.renderer;
   }
 
-  getRenderer2D():any {
+  getRenderer2D(): any {
     return this.renderer.renderer2D;
   }
 
@@ -143,9 +143,14 @@ export class IfcContext {
     let counter = 0;
 
     for (let i = 0; i < indices.length || i < threshold; i++) {
-      xCoords += position.getX(indices[i]);
-      yCoords += position.getY(indices[i]);
-      zCoords += position.getZ(indices[i]);
+      const x = position.getX(indices[i]);
+      const y = position.getY(indices[i]);
+      const z = position.getZ(indices[i]);
+
+      if (!isNaN(x)) xCoords += x;
+      if (!isNaN(y)) yCoords += y;
+      if (!isNaN(z)) zCoords += z;
+
       counter++;
     }
 
