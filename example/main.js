@@ -1,28 +1,8 @@
-import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
+import { IfcViewerAPI } from 'mtn-ifc-viewer';
 import { createSideMenuButton } from './utils/gui-creator';
-import {
-  IFCSPACE,
-  IFCOPENINGELEMENT,
-  IFCFURNISHINGELEMENT,
-  IFCWALL,
-  IFCWINDOW,
-  IFCCURTAINWALL,
-  IFCMEMBER,
-  IFCPLATE,
-} from 'web-ifc';
-import {
-  MeshBasicMaterial,
-  LineBasicMaterial,
-  Color,
-  Vector2,
-  DepthTexture,
-  WebGLRenderTarget,
-  Material,
-  BufferGeometry,
-  BufferAttribute,
-  Mesh,
-} from 'three';
-import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
+import { IFCSPACE, IFCOPENINGELEMENT } from 'web-ifc';
+import { Color } from 'three';
+import { ClippingEdges } from 'mtn-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
 import Stats from 'stats.js/src/Stats';
 
 const container = document.getElementById('viewer-container');
@@ -43,21 +23,19 @@ viewer.context.ifcCamera.cameraControls;
 
 const manager = viewer.IFC.loader.ifcManager;
 
-
 // viewer.IFC.loader.ifcManager.useWebWorkers(true, 'files/IFCWorker.js');
 viewer.IFC.setWasmPath('files/');
 
 viewer.IFC.loader.ifcManager.applyWebIfcConfig({
   USE_FAST_BOOLS: true,
-  COORDINATE_TO_ORIGIN: true,
+  COORDINATE_TO_ORIGIN: true
 });
-
 
 // viewer.IFC.loadIfcUrl('./test.ifc', true);
 viewer.context.ifcCamera.projection = 1;
 viewer.context.ifcCamera.cameraControls.setLookAt(0, 100, 0, 0, 0, 0, true);
-viewer.dimensions.setDimensionIn2D = true
-viewer.dimensions.active = true
+viewer.dimensions.setDimensionIn2D = true;
+viewer.dimensions.active = true;
 viewer.dimensions.previewActive = true;
 // Setup loader
 
@@ -103,7 +81,7 @@ const loadIfc = async (event) => {
 
   viewer.IFC.loader.ifcManager.parser.setupOptionalCategories({
     [IFCSPACE]: false,
-    [IFCOPENINGELEMENT]: false,
+    [IFCOPENINGELEMENT]: false
   });
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
@@ -151,8 +129,5 @@ sectionButton.addEventListener('click', () => {
 
 const dimBtn = createSideMenuButton('./resources/dropbox-icon.svg');
 dimBtn.addEventListener('click', () => {
-  dimBtn.blur();
-  viewer.dimensions.setDimensionIn2D = true
-  viewer.dimensions.active = true
-  viewer.dimensions.previewActive = true;
+  viewer.IFC.selector.prepickIfcItemsByID(0, [166316, 175964], true, true);
 });
