@@ -29,6 +29,6 @@
     "three": "0.135",
     "three-mesh-bvh": "^0.5.11",
     "web-ifc": "^0.0.39",
-    "mtn-ifc-viewer": "0.0.10"
+    "mtn-ifc-viewer": "0.0.11"
   }
 }

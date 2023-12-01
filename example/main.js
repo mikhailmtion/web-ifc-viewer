@@ -27,16 +27,18 @@ const manager = viewer.IFC.loader.ifcManager;
 viewer.IFC.setWasmPath('files/');
 
 viewer.IFC.loader.ifcManager.applyWebIfcConfig({
-  USE_FAST_BOOLS: true,
+  USE_FAST_BOOLS: false,
   COORDINATE_TO_ORIGIN: true
 });
 
+viewer.clipper.toggle();
+
 // viewer.IFC.loadIfcUrl('./test.ifc', true);
-viewer.context.ifcCamera.projection = 1;
-viewer.context.ifcCamera.cameraControls.setLookAt(0, 100, 0, 0, 0, 0, true);
-viewer.dimensions.setDimensionIn2D = true;
-viewer.dimensions.active = true;
-viewer.dimensions.previewActive = true;
+// viewer.context.ifcCamera.projection = 1;
+// viewer.context.ifcCamera.cameraControls.setLookAt(0, 100, 0, 0, 0, 0, true);
+// viewer.dimensions.setDimensionIn2D = true;
+// viewer.dimensions.active = true;
+// viewer.dimensions.previewActive = true;
 // Setup loader
 
 // const lineMaterial = new LineBasicMaterial({ color: 0x555555 });
@@ -106,12 +108,12 @@ inputElement.classList.add('hidden');
 inputElement.addEventListener('change', loadIfc, false);
 
 const handleKeyDown = async (event) => {
-  this.viewer.dimensions.create();
+  viewer.dimensions.create();
 };
 
 window.onkeydown = handleKeyDown;
 window.ondblclick = async () => {
-  viewer.dimensions.create();
+  viewer.clipper.createPlane()
 };
 
 //Setup UI
@@ -127,7 +129,7 @@ sectionButton.addEventListener('click', () => {
   viewer.clipper.toggle();
 });
 
-const dimBtn = createSideMenuButton('./resources/dropbox-icon.svg');
-dimBtn.addEventListener('click', () => {
-  viewer.IFC.selector.prepickIfcItemsByID(0, [166316, 175964], true, true);
-});
+// const dimBtn = createSideMenuButton('./resources/dropbox-icon.svg');
+// dimBtn.addEventListener('click', () => {
+//   viewer.IFC.selector.prepickIfcItemsByID(0, [166316, 175964], true, true);
+// });

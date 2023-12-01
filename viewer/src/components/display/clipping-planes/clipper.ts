@@ -9,7 +9,7 @@ export class IfcClipper extends IfcComponent {
   dragging: boolean;
   planes: IfcPlane[];
   intersection: Intersection | undefined;
-  orthogonalY = true;
+  private _orthogonalY = false;
   toleranceOrthogonalY = 0.7;
   planeSize = 5;
   private edgesEnabled: boolean;
@@ -25,6 +25,14 @@ export class IfcClipper extends IfcComponent {
     this.edgesEnabled = true;
     this.dragging = false;
     this.planes = [];
+  }
+
+  get orthogonalY() {
+    return this._orthogonalY;
+  }
+
+  set orthogonalY(state: boolean) {
+    this._orthogonalY = state;
   }
 
   get active() {
@@ -71,7 +79,7 @@ export class IfcClipper extends IfcComponent {
     if (!intersects) return;
     const plane = this.createPlaneFromIntersection(intersects);
     this.intersection = undefined;
-    return plane
+    return plane;
   };
 
   createFromNormalAndCoplanarPoint = (normal: Vector3, point: Vector3, isPlan = false) => {
@@ -105,7 +113,7 @@ export class IfcClipper extends IfcComponent {
     this.context.removeClippingPlane(existingPlane.plane);
     this.updateMaterials();
     this.context.renderer.postProduction.update();
-    return existingPlane
+    return existingPlane;
   };
 
   deleteAllPlanes = () => {
@@ -140,11 +148,11 @@ export class IfcClipper extends IfcComponent {
     this.planes.push(plane);
     this.context.addClippingPlane(plane.plane);
     this.updateMaterials();
-    return plane
+    return plane;
   };
 
   private normalizePlaneDirectionY(normal: Vector3) {
-    if (this.orthogonalY) {
+    if (this._orthogonalY) {
       if (normal.y > this.toleranceOrthogonalY) {
         normal.x = 0;
         normal.y = 1;

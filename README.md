@@ -39,8 +39,9 @@ Check out [our official docs](https://github.com/IFCjs/web-ifc-viewer/blob/maste
 `npm install web-ifc-viewer` or `yarn add web-ifc-viewer`
 
 ## View changes with hot reload
-In root progect start command `npm run dev`. If you has a error message, you need use bash(no powershell) and run this command:
+In root project start command `npm run dev`. If you has a error message, you need use bash/zsh(no powershell) and run this command:
 `cd viewer && (npm run watch &) && cd ../example && (npm run watch&) && (npm run start&)`
+Also you need update version library in package.json example folder 
 
 
 ## Quick setup
